@@ -48,7 +48,7 @@ cd touiteur-demo
 
 On peut dès à présent vérifier que notre application fonctionne déjà !
 
-Pour cela, il nous faut lancer le serveur Rails avec la commande
+Pour cela, il nous faut lancer le serveur Rails avec la commande :
 
 💻
 
@@ -64,7 +64,7 @@ Depuis notre navigateur, nous pouvons acceder à notre application à l'adresse 
 
 
 
-Nous pouvons alors accéder à notre projet depuis notre éditeur de texte Sublime Text **depuis un nouveau terminal** avec la commande
+Nous pouvons alors accéder à notre projet depuis notre éditeur de texte Sublime Text **depuis un nouveau terminal** avec la commande :
 
 💻
 
@@ -131,3 +131,75 @@ end
 
 Nous avons maintenant notre page **home** à la bonne adresse  [http://locahost:3000/](http://localhost:3000/) !
 
+:art: alors oui, c'est pas super beau mais on verra comment embellir tout ça après, patience :pray:
+
+## Les messages
+
+Notre objectif est de LISTER et CRÉER des messages. Nous avons donc besoin d'un modèle **message**. Un message contient deux attributs : un contenu `content` et un auteur `author`.
+
+Nous pouvons le créer grâce à la commande :
+
+💻
+
+```sh
+rails generate model message content:text author:string
+```
+
+Nous avons deux nouveaux fichiers : **app/models/message.rb** et **db/migrate/20180912121554_create_messages.rb** ce dernier va permettre d'ajouter à la base de donnée une table _messages_ grâce à la commande :
+
+💻
+
+```sh
+rails db:migrate
+```
+
+### Lister des messages (INDEX)
+
+Nous voulons lister des messages, pour cela nous allons devoir tricher un peu et créer des messages directement depuis la console Rails car nous n'avons pas encore développé la fonctionnalité !
+
+Pour ouvir une console Rails, il faut lancer la commande suivante :
+
+💻
+
+```sh
+rails console
+```
+
+L'invite de commande commence maitenant par `irb(main):001:0> `, nous sommes dans la console Rails !
+
+Les commandes de la console Rails sont indiquées par 💻🤓, comme pour le terminal, il faut les rentrer une par une et appuyer sur la touche `Entrer` pour les lancer.
+
+Pour créer un message depuis la console nous tapons la suivante :
+
+💻:nerd_face:
+
+```ruby
+Message.create(content: "Hello RailsGirls!", author: "Alice")
+```
+
+Créons-en un deuxième !
+
+💻🤓
+
+```ruby
+Message.create(content: "I want to code more !", author: "Eve")
+```
+
+Nous avons maintenant deux messages dans la base de données. Nous pouvons le vérifier avec une dernière commande dans la console Rails :
+
+💻🤓
+
+```ruby
+Message.all
+```
+
+Qui renvoit le message suivant :
+
+```ruby
+  Message Load (1.2ms)  SELECT  "messages".* FROM "messages" LIMIT ?  [["LIMIT", 11]]
+=> #<ActiveRecord::Relation [#<Message id: 2, content: "Hello RailsGirls!", author: "Alice", created_at: "2018-09-12 12:29:36", updated_at: "2018-09-12 12:29:36">, #<Message id: 3, content: "I want to code more !", author: "Eve", created_at: "2018-09-12 12:29:41", updated_at: "2018-09-12 12:29:41">]>
+```
+
+On retrouve bien nos deux messages 🕵 !
+
+Affichons les dans notre applications !
