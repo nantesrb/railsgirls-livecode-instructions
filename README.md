@@ -251,14 +251,16 @@ Modifions maintenant notre vue pour afficher chaque message :
 📄
 
 ```ruby
-# app/views/messages/index.html.erb
-Les messages :
-<br>
+<!-- app/views/messages/index.html.erb -->
+<h1>Les messages :</h1>
+
 <% @messages.each do |message| %>
-	<%= message.content %>  (<%= message.author %>)
-	<br>
+	<p><%= message.content %></p>
+	<em><%= message.author %></em>
 <% end %>
 ```
+
+Et oui, on peut mettre du code html ET du code ruby dans la vue ! On verra plus précisement le html plus tard.
 
 Nous voyons maintenant nos messages depuis la page http://localhost:3000/messages/ ! :tada:
 
