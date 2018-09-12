@@ -24,7 +24,7 @@ ou
 
 
 
-### Création de l'application
+## Création de l'application
 
 Nous allons créer un clone de Twitter (en beaucoup plus simple !). Notre logique métier s'articulera donc autour de _messages_. Nous allons pouvoir LISTER et CRÉER des _messages._
 
@@ -56,7 +56,7 @@ Pour cela, il nous faut lancer le serveur Rails avec la commande
 rails server
 ```
 
-Depuis votre navigateur, vous pouvez acceder à votre application à l'adresse [http://locahost:3000](http://localhost:3000).
+Depuis notre navigateur, nous pouvons acceder à notre application à l'adresse [http://locahost:3000](http://localhost:3000).
 
 ![yay](images/yay.png)
 
@@ -64,7 +64,7 @@ Depuis votre navigateur, vous pouvez acceder à votre application à l'adresse [
 
 
 
-Nous pouvons alors acceder à notre projet depuis notre éditeur de texte Sublime Text avec la commande
+Nous pouvons alors accéder à notre projet depuis notre éditeur de texte Sublime Text **depuis un nouveau terminal** avec la commande
 
 💻
 
@@ -80,7 +80,7 @@ Il y en a beaucoup ! Nous allons nous concentrer sur seulement certains d'entre-
 
 ### app
 
-Le dossier **app** contient les dossiers dans lesquels vous allez ajouter les fichiers de votre logique métier.
+Le dossier **app** contient les dossiers dans lesquels nous allons ajouter les fichiers de notre logique métier.
 
 ![app](images/app.png)
 
