@@ -90,11 +90,11 @@ Les dossiers que l'on va utiliser dans un premier temps sont **controllers**, **
 
 Nous allons aussi utiliser le fichier **config/routes.rb**.
 
-## Principe de MVC
+## Principe du MVC
 
 ![mvcr](images/mvcr.png)
 
-## Notre première page
+## Notre première page :rocket:
 
 Nous allons créer une page d'accueil **home**, qui n'est pas lié à notre logique métier pas de lien avec les _messages_ pour cette première page.
 
@@ -157,7 +157,7 @@ Nous avons deux nouveaux fichiers : **app/models/message.rb** et **db/migrate/20
 rails db:migrate
 ```
 
-### Lister des messages (INDEX)
+### Création de messages depuis la console Rails 💻🤓
 
 Nous voulons lister des messages, pour cela nous allons devoir tricher un peu et créer des messages directement depuis la console Rails car nous n'avons pas encore développé la fonctionnalité !
 
@@ -197,7 +197,7 @@ Nous avons maintenant deux messages dans la base de données. Nous pouvons le v�
 Message.all
 ```
 
-Qui renvoit le message suivant :
+Qui donne la réponse suivante :
 
 ```ruby
   Message Load (1.2ms)  SELECT  "messages".* FROM "messages" LIMIT ?  [["LIMIT", 11]]
@@ -206,4 +206,6 @@ Qui renvoit le message suivant :
 
 On retrouve bien nos deux messages 🕵 !
 
-Affichons les dans notre applications !
+Affichons-les dans notre applications !
+
+## Lister des messages (INDEX)
