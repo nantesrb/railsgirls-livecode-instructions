@@ -264,3 +264,134 @@ Et oui, on peut mettre du code html ET du code ruby dans la vue ! On verra plus 
 
 Nous voyons maintenant nos messages depuis la page http://localhost:3000/messages/ ! :tada:
 
+### Créer un message (CREATE)
+
+La création d'un message se fait en deux étapes.
+
+- La première étape est de proposer un formulaire à l'utilisateur depuis une page NEW qui sera accessible à l'adresse http://localhost:3000/messages/new.
+
+- La deuxième étape consiste à pouvoir poster les informations saisies par le formulaire pour créer un _message_ en base de données, depuis une action CREATE.
+
+#### Le formulaire
+
+Nous avons besoin d'une route dans le router **config/route.rb**, d'une action NEW dans le controller **app/controllers/messages_controller** et d'une vue **app/views/messages/new.html.erb**.
+
+C'est parti !
+
+📄
+
+```ruby
+# config/routes.rb
+Rails.application.routes.draw do
+  root to: 'pages#home'
+  get 'messages', to: 'messages#index'
+  get 'messages/new', to: 'messages#new'
+end
+```
+
+📄
+
+```ruby
+# app/controllers/messages_controller.rb
+class MessagesController < ApplicationController
+  def index
+      @messages = Message.all
+  end
+    
+   def new
+   end
+end
+```
+
+📄
+
+```ruby
+<!-- app/views/messages/new.html.erb -->
+<h1>Nouveau message</h1>
+```
+
+Si tout c'est bien passé, nous avons notre nouvelle page http://localhost:3000/messages/new. Il nous manque plus que notre formulaire !
+
+Pour l'action INDEX, le controller avait passé à la vue une variable `@messages` qui contenait tous les messages. Pour notre action NEW, le controller va passer à la vue une variable `@message` qui contiendra un "message vide", prêt à être rempli par l'utilisateur. Pour cela, nous ajoutons une ligne de code dans le controller **messages_controller** :
+
+📄
+
+```ruby
+# app/controllers/messages_controller.rb
+class MessagesController < ApplicationController
+  def index
+      @messages = Message.all
+  end
+    
+   def new
+       @message = Message.new
+   end
+end
+```
+
+Nous pouvons maintenant créer notre formulaire dans la vue **new.html.erb** :
+
+📄
+
+```ruby
+<!-- app/views/messages/new.html.erb -->
+<h1>Nouveau message</h1>
+<% form_for @message do |f| %>
+	<%= f.label :content, 'Contenu' %>
+	<%= f.text_area :content %>
+
+	<%= f.label :author, 'Auteur' %>
+	<%= f.text_field :author %>
+	
+	<%= f.submit 'Ajouter mon message' %>
+<% end %>
+```
+
+Nous pouvons maintenant admirer notre ~~superbe~~ formulaire http://localhost:3000/messages/new.
+
+Pour l'instant, nous avons une erreur si nous soumettons notre nouveau message. C'est parce qu'il nous manque notre deuxième étape !
+
+Nous avons besoin d'une route et d'une action CREATE dans le controller **app/controllers/messages_controller**. Pas besoin de vue, la création ne concerne pas l'utilisateur.
+
+📄
+
+```ruby
+# config/routes.rb
+Rails.application.routes.draw do
+  root to: 'pages#home'
+  get 'messages', to: 'messages#index'
+  get 'messages/new', to: 'messages#new'
+  post 'messages', to: 'messages#create'
+end
+```
+
+Comme nous "postons" des informations lorsque nous soumettons le formulaire, nous utilisons le verbe `post` dans le routeur.
+
+La création d'un message en base de donnée depuis les informations envoyées par l'utilisateur se fait de cette manière :
+
+📄
+
+```ruby
+# app/controllers/messages_controller.rb
+class MessagesController < ApplicationController
+  # [...] le reste du fichier est caché ici 🙈
+    
+  def create
+  	@message = Message.create(message_params)
+  	redirect_to messages_path
+  end
+
+  private
+
+  def message_params
+  	params.require(:message).permit(:content, :author)
+  end
+end
+```
+
+Cette partie est un peu dure à comprendre aujourd'hui 😳
+
+En gros on permet à l'utilisateur de remplir les paramètres `content` et `author` pour un `message`, on crée le message puis on redirige l'utilisateur vers la page d'index des messages.
+
+Et voilà ! Nous avons maintenant la possibilité de créer des messages :tada:
+
