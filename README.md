@@ -90,6 +90,10 @@ Les dossiers que l'on va utiliser dans un premier temps sont **controllers**, **
 
 Nous allons aussi utiliser le fichier **config/routes.rb**.
 
+## Principe de MVC
+
+![mvcr](images/mvcr.png)
+
 ## Notre première page
 
 Nous allons créer une page d'accueil **home**, qui n'est pas lié à notre logique métier pas de lien avec les _messages_ pour cette première page.
