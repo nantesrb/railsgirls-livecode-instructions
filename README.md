@@ -128,9 +128,8 @@ Nous souhaitons que cette page s'affiche à la racine de l'application donc nous
 ```ruby
 # config/routes.rb
 Rails.application.routes.draw do
-  root to: "pages#home"
+  root to: 'pages#home'
 end
-
 ```
 
 Nous avons maintenant notre page **home** à la bonne adresse  [http://locahost:3000/](http://localhost:3000/) !
@@ -201,11 +200,65 @@ Qui donne la réponse suivante :
 
 ```ruby
   Message Load (1.2ms)  SELECT  "messages".* FROM "messages" LIMIT ?  [["LIMIT", 11]]
-=> #<ActiveRecord::Relation [#<Message id: 2, content: "Hello RailsGirls!", author: "Alice", created_at: "2018-09-12 12:29:36", updated_at: "2018-09-12 12:29:36">, #<Message id: 3, content: "I want to code more !", author: "Eve", created_at: "2018-09-12 12:29:41", updated_at: "2018-09-12 12:29:41">]>
+=> #<ActiveRecord::Relation [#<Message id: 1, content: "Hello RailsGirls!", author: "Alice", created_at: "2018-09-12 12:29:36", updated_at: "2018-09-12 12:29:36">, #<Message id: 2, content: "I want to code more !", author: "Eve", created_at: "2018-09-12 12:29:41", updated_at: "2018-09-12 12:29:41">]>
 ```
 
-On retrouve bien nos deux messages 🕵 !
+En lisant bien, on retrouve bien nos deux messages 🔍
 
 Affichons-les dans notre applications !
 
-## Lister des messages (INDEX)
+### Lister des messages (INDEX)
+
+Pour lister les messages depuis notre application nous allons avoir besoin d'un controller pour les _messages_ et l'action (la page) dont nous avons besoin s'appelle INDEX. Nous allons donc utiliser la commande :
+
+💻
+
+```sh
+rails generate controller messages index --no-assets
+```
+
+Nous avons alors un nouveau fichier **app/controllers/messages_controller** et un nouveau dossier **app/views/messages** contenant un fichier **index.html.erb**.
+
+Nous avons pour l'instant accès à cette page depuis l'adresse `http://localhost:3000/messages/index`, modifions le fichier **config/routes.rb** pour pouvoir accéder à cette page depuis ``http://localhost:3000/messages/` :
+
+📄
+
+```ruby
+# config/routes.rb
+Rails.application.routes.draw do
+  root to: 'pages#home'
+  get 'messages', to: 'messages#index'
+end
+```
+
+Listons maintenant les messages sur cette page http://localhost:3000/messages/
+
+Pour cela nous avons besoin de récupérer tous les _messages_ disponibles dans la base de donnée depuis le controller **messages_controller** (on l'avait fait depuis la console Rails tout à l'heure). Nous allons stocker cette liste dans une variable `@messages` qui sera accessible aussi dans le fichier de la vue **app/views/messages/index.html.erb**.
+
+📄
+
+```ruby
+# app/controllers/messages_controller.rb
+class MessagesController < ApplicationController
+  def index
+      @messages = Message.all
+  end
+end
+```
+
+Modifions maintenant notre vue pour afficher chaque message :
+
+📄
+
+```ruby
+# app/views/messages/index.html.erb
+Les messages :
+<br>
+<% @messages.each do |message| %>
+	<%= message.content %>  (<%= message.author %>)
+	<br>
+<% end %>
+```
+
+Nous voyons maintenant nos messages depuis la page http://localhost:3000/messages/ ! :tada:
+
