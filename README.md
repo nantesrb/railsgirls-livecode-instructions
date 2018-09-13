@@ -185,7 +185,7 @@ Créons-en un deuxième !
 💻🤓
 
 ```ruby
-Message.create(content: "I want to code more !", author: "Eve")
+Message.create(content: "I want to code more!", author: "Eve")
 ```
 
 Nous avons maintenant deux messages dans la base de données. Nous pouvons le vérifier avec une dernière commande dans la console Rails :
@@ -219,7 +219,7 @@ rails generate controller messages index --no-assets
 
 Nous avons alors un nouveau fichier **app/controllers/messages_controller** et un nouveau dossier **app/views/messages** contenant un fichier **index.html.erb**.
 
-Nous avons pour l'instant accès à cette page depuis l'adresse `http://localhost:3000/messages/index`, modifions le fichier **config/routes.rb** pour pouvoir accéder à cette page depuis ``http://localhost:3000/messages/` :
+Nous avons pour l'instant accès à cette page depuis l'adresse `http://localhost:3000/messages/index`, modifions le fichier **config/routes.rb** pour pouvoir accéder à cette page depuis `http://localhost:3000/messages/` :
 
 📄
 
@@ -264,7 +264,7 @@ Et oui, on peut mettre du code html ET du code ruby dans la vue ! On verra plus 
 
 Nous voyons maintenant nos messages depuis la page http://localhost:3000/messages/ ! :tada:
 
-### Créer un message (CREATE)
+### Créer un message (NEW, CREATE)
 
 La création d'un message se fait en deux étapes.
 
@@ -297,7 +297,7 @@ class MessagesController < ApplicationController
   def index
       @messages = Message.all
   end
-    
+
    def new
    end
 end
@@ -322,7 +322,7 @@ class MessagesController < ApplicationController
   def index
       @messages = Message.all
   end
-    
+
    def new
        @message = Message.new
    end
@@ -342,7 +342,7 @@ Nous pouvons maintenant créer notre formulaire dans la vue **new.html.erb** :
 
 	<%= f.label :author, 'Auteur' %>
 	<%= f.text_field :author %>
-	
+
 	<%= f.submit 'Ajouter mon message' %>
 <% end %>
 ```
@@ -375,7 +375,7 @@ La création d'un message en base de donnée depuis les informations envoyées p
 # app/controllers/messages_controller.rb
 class MessagesController < ApplicationController
   # [...] le reste du fichier est caché ici 🙈
-    
+
   def create
   	@message = Message.create(message_params)
   	redirect_to messages_path
