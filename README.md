@@ -96,7 +96,7 @@ Nous allons aussi utiliser le fichier **config/routes.rb**.
 
 ## Notre première page :rocket:
 
-Nous allons créer une page d'accueil **home**, qui n'est pas lié à notre logique métier pas de lien avec les _messages_ pour cette première page.
+Nous allons créer une page d'accueil **home**, qui n'est pas liée à notre logique métier (aucun lien avec les _messages_ pour cette première page).
 
 Cette page sera accessible à la racine `/` de notre site à la place de la page _Yay! You’re on Rails!_, c'est à dire l'adresse `http://localhost:3000/`.
 
