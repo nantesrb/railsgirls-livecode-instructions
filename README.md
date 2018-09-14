@@ -98,9 +98,9 @@ Nous allons aussi utiliser le fichier **config/routes.rb**.
 
 Nous allons créer une page d'accueil **home**, qui n'est pas lié à notre logique métier pas de lien avec les _messages_ pour cette première page.
 
-Cette page sera accessible à la racine `/` de notre site à la place de la page _Yay! You’re on Rails!_, c'est à dire l'adresse `http://localhost:3000/`.
+Cette page sera accessible à la racine `/` de notre site à la place de la page _Yay! You’re on Rails!_, c'est-à-dire à l'adresse `http://localhost:3000/`.
 
-Pour cela nous avons besoin d'un controller qui va gérer les pages non reliées à notre logique métier (on pourrait par exemple avoir une page de contact, une page présentant l'équipe, une page avec les conditions générales, etc.. Ce controller gère des **pages** et nous souhaitons avoir une page **home**, donc nous pouvons lancer la commande :
+Pour cela nous avons besoin d'un controller qui va gérer les pages non reliées à notre logique métier (on pourrait par exemple avoir une page de contact, une page présentant l'équipe, une page avec les conditions générales, etc.). Ce controller gère des **pages** et nous souhaitons avoir une page **home**, donc nous pouvons lancer la commande :
 
 💻
 
@@ -134,11 +134,11 @@ end
 
 Nous avons maintenant notre page **home** à la bonne adresse  [http://locahost:3000/](http://localhost:3000/) !
 
-:art: alors oui, c'est pas super beau mais on verra comment embellir tout ça après, patience :pray:
+:art: alors oui, ce n'est pas super beau mais on verra comment embellir tout ça après, patience :pray:
 
 ## Les messages
 
-Notre objectif est de LISTER et CRÉER des messages. Nous avons donc besoin d'un modèle **message**. Un message contient deux attributs : un contenu `content` et un auteur `author`.
+Notre objectif est de LISTER et CRÉER des messages. Nous avons donc besoin d'un modèle **message**. Un message a  deux propriétés : un contenu `content` et un auteur `author`.
 
 Nous pouvons le créer grâce à la commande :
 
@@ -148,7 +148,7 @@ Nous pouvons le créer grâce à la commande :
 rails generate model message content:text author:string
 ```
 
-Nous avons deux nouveaux fichiers : **app/models/message.rb** et **db/migrate/20180912121554_create_messages.rb** ce dernier va permettre d'ajouter à la base de donnée une table _messages_ grâce à la commande :
+Nous avons deux nouveaux fichiers : **app/models/message.rb** et **db/migrate/20180912121554_create_messages.rb** ce dernier va permettre d'ajouter à la base de données une table `messages` grâce à la commande :
 
 💻
 
@@ -172,7 +172,7 @@ L'invite de commande commence maitenant par `irb(main):001:0> `, nous sommes dan
 
 Les commandes de la console Rails sont indiquées par 💻🤓, comme pour le terminal, il faut les rentrer une par une et appuyer sur la touche `Entrer` pour les lancer.
 
-Pour créer un message depuis la console nous tapons la suivante :
+Pour créer un message depuis la console nous tapons la commande suivante :
 
 💻:nerd_face:
 
@@ -199,13 +199,13 @@ Message.all
 Qui donne la réponse suivante :
 
 ```ruby
-  Message Load (1.2ms)  SELECT  "messages".* FROM "messages" LIMIT ?  [["LIMIT", 11]]
+Message Load (1.2ms)  SELECT  "messages".* FROM "messages" LIMIT ?  [["LIMIT", 11]]
 => #<ActiveRecord::Relation [#<Message id: 1, content: "Hello RailsGirls!", author: "Alice", created_at: "2018-09-12 12:29:36", updated_at: "2018-09-12 12:29:36">, #<Message id: 2, content: "I want to code more !", author: "Eve", created_at: "2018-09-12 12:29:41", updated_at: "2018-09-12 12:29:41">]>
 ```
 
 En lisant bien, on retrouve bien nos deux messages 🔍
 
-Affichons-les dans notre applications !
+Affichons-les dans notre application !
 
 ### Lister des messages (INDEX)
 
@@ -233,7 +233,7 @@ end
 
 Listons maintenant les messages sur cette page http://localhost:3000/messages/
 
-Pour cela nous avons besoin de récupérer tous les _messages_ disponibles dans la base de donnée depuis le controller **messages_controller** (on l'avait fait depuis la console Rails tout à l'heure). Nous allons stocker cette liste dans une variable `@messages` qui sera accessible aussi dans le fichier de la vue **app/views/messages/index.html.erb**.
+Pour cela nous avons besoin de récupérer tous les _messages_ disponibles dans la base de données depuis le controller **messages_controller** (on l'avait fait depuis la console Rails tout à l'heure). Nous allons stocker cette liste dans une variable `@messages` qui sera accessible aussi dans le fichier de la vue **app/views/messages/index.html.erb**.
 
 📄
 
@@ -241,7 +241,7 @@ Pour cela nous avons besoin de récupérer tous les _messages_ disponibles dans 
 # app/controllers/messages_controller.rb
 class MessagesController < ApplicationController
   def index
-      @messages = Message.all
+    @messages = Message.all
   end
 end
 ```
@@ -255,8 +255,8 @@ Modifions maintenant notre vue pour afficher chaque message :
 <h1>Les messages :</h1>
 
 <% @messages.each do |message| %>
-	<p><%= message.content %></p>
-	<em><%= message.author %></em>
+  <p><%= message.content %></p>
+  <em><%= message.author %></em>
 <% end %>
 ```
 
@@ -295,11 +295,11 @@ end
 # app/controllers/messages_controller.rb
 class MessagesController < ApplicationController
   def index
-      @messages = Message.all
+    @messages = Message.all
   end
 
-   def new
-   end
+  def new
+  end
 end
 ```
 
@@ -320,12 +320,12 @@ Pour l'action INDEX, le controller avait passé à la vue une variable `@message
 # app/controllers/messages_controller.rb
 class MessagesController < ApplicationController
   def index
-      @messages = Message.all
+    @messages = Message.all
   end
 
-   def new
-       @message = Message.new
-   end
+  def new
+    @message = Message.new
+  end
 end
 ```
 
@@ -337,13 +337,13 @@ Nous pouvons maintenant créer notre formulaire dans la vue **new.html.erb** :
 <!-- app/views/messages/new.html.erb -->
 <h1>Nouveau message</h1>
 <% form_for @message do |f| %>
-	<%= f.label :content, 'Contenu' %>
-	<%= f.text_area :content %>
+  <%= f.label :content, 'Contenu' %>
+  <%= f.text_area :content %>
 
-	<%= f.label :author, 'Auteur' %>
-	<%= f.text_field :author %>
+  <%= f.label :author, 'Auteur' %>
+  <%= f.text_field :author %>
 
-	<%= f.submit 'Ajouter mon message' %>
+  <%= f.submit 'Ajouter mon message' %>
 <% end %>
 ```
 
@@ -377,14 +377,14 @@ class MessagesController < ApplicationController
   # [...] le reste du fichier est caché ici 🙈
 
   def create
-  	@message = Message.create(message_params)
-  	redirect_to messages_path
+    @message = Message.create(message_params)
+    redirect_to messages_path
   end
 
   private
 
   def message_params
-  	params.require(:message).permit(:content, :author)
+    params.require(:message).permit(:content, :author)
   end
 end
 ```
