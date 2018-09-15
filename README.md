@@ -336,7 +336,7 @@ Nous pouvons maintenant créer notre formulaire dans la vue **new.html.erb** :
 ```ruby
 <!-- app/views/messages/new.html.erb -->
 <h1>Nouveau message</h1>
-<% form_for @message do |f| %>
+<%= form_for @message do |f| %>
   <%= f.label :content, 'Contenu' %>
   <%= f.text_area :content %>
 
