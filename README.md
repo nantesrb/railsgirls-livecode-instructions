@@ -56,7 +56,7 @@ Pour cela, il nous faut lancer le serveur Rails avec la commande :
 rails server
 ```
 
-Depuis notre navigateur, nous pouvons acceder à notre application à l'adresse [http://locahost:3000](http://localhost:3000).
+Depuis notre navigateur, nous pouvons acceder à notre application à l'adresse [http://localhost:3000](http://localhost:3000).
 
 ![yay](images/yay.png)
 
@@ -132,7 +132,7 @@ Rails.application.routes.draw do
 end
 ```
 
-Nous avons maintenant notre page **home** à la bonne adresse  [http://locahost:3000/](http://localhost:3000/) !
+Nous avons maintenant notre page **home** à la bonne adresse  [http://localhost:3000/](http://localhost:3000/) !
 
 :art: alors oui, ce n'est pas super beau mais on verra comment embellir tout ça après, patience :pray:
 
