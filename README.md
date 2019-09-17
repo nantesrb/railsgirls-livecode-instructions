@@ -2,7 +2,9 @@
 
 ---
 
-** ⚠⚠ À lire obligatoirement ⚠⚠ À lire obligatoirement ⚠⚠ À lire obligatoirement ⚠⚠**
+<div style="background-color: black; color: yellow; font-weigt: bold; padding: 8px;">
+  ⚠⚠ À lire obligatoirement ⚠⚠ À lire obligatoirement ⚠⚠ À lire obligatoirement ⚠⚠
+</div>
 
 ### Avant-propos
 Le code et les lignes de commandes sont présentés dans des cadres :
