@@ -1,6 +1,10 @@
 # Touiteur livecode 👩💻
 
-### Avant-propos ⚠⚠ À lire obligatoirement ⚠⚠
+---
+
+** ⚠⚠ À lire obligatoirement ⚠⚠ À lire obligatoirement ⚠⚠ À lire obligatoirement ⚠⚠**
+
+### Avant-propos
 Le code et les lignes de commandes sont présentés dans des cadres :
 
 📄
@@ -22,7 +26,7 @@ ou
 
 💻 Il s'agit de lignes de commande, **chaque ligne doit être tapée une par une dans le terminal**. Il faut appuyer sur `Entrer` après chaque ligne.
 
-
+---
 
 ## Création de l'application
 
