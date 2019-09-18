@@ -211,6 +211,8 @@ En lisant bien, on retrouve bien nos deux messages 🔍
 
 Affichons-les dans notre application !
 
+(Pour sortir de la console Rails, il faut faire `Ctrl` + `C`)
+
 ### Lister des messages (INDEX)
 
 Pour lister les messages depuis notre application nous allons avoir besoin d'un controller pour les _messages_ et l'action (la page) dont nous avons besoin s'appelle INDEX. Nous allons donc utiliser la commande :
