@@ -5,7 +5,7 @@
 **⚠⚠ À lire obligatoirement ⚠⚠ À lire obligatoirement ⚠⚠ À lire obligatoirement ⚠⚠**
 
 ### Avant-propos
-Le code et les lignes de commandes sont présentés dans des cadres :
+Le code et les lignes de commandes sont présentés dans des cadres&nbsp;:
 
 📄
 ```ruby
@@ -32,7 +32,7 @@ ou
 
 Nous allons créer un clone de Twitter (en beaucoup plus simple !). Notre logique métier s'articulera donc autour de _messages_. Nous allons pouvoir LISTER et CRÉER des _messages._
 
-Voici la ligne de commande pour demander à Rails de créer l'application :
+Voici la ligne de commande pour demander à Rails de créer l'application&nbsp;:
 
 💻
 
@@ -42,7 +42,7 @@ rails new -T -C --skip-yarn --skip-bootsnap touiteur-demo
 
 Rails va générer un dossier avec tous les fichiers nécessaires à l'application.
 
-Pour se déplacer à l'intérieur du nouveau dossier, il faut éxecuter la commande suivante :
+Pour se déplacer à l'intérieur du nouveau dossier, il faut éxecuter la commande suivante&nbsp;:
 
 💻
 
@@ -52,7 +52,7 @@ cd touiteur-demo
 
 On peut dès à présent vérifier que notre application fonctionne déjà !
 
-Pour cela, il nous faut lancer le serveur Rails avec la commande :
+Pour cela, il nous faut lancer le serveur Rails avec la commande&nbsp;:
 
 💻
 
@@ -68,7 +68,7 @@ Depuis notre navigateur, nous pouvons acceder à notre application à l'adresse 
 
 
 
-Nous pouvons alors accéder à notre projet depuis notre éditeur de texte Sublime Text **depuis un nouveau terminal** avec la commande :
+Nous pouvons alors accéder à notre projet depuis notre éditeur de texte Sublime Text **depuis un nouveau terminal** avec la commande&nbsp;:
 
 💻
 
@@ -104,7 +104,7 @@ Nous allons créer une page d'accueil **home**, qui n'est pas liée à notre log
 
 Cette page sera accessible à la racine `/` de notre site à la place de la page _Yay! You’re on Rails!_, c'est-à-dire à l'adresse `http://localhost:3000/`.
 
-Pour cela nous avons besoin d'un controller qui va gérer les pages non reliées à notre logique métier (on pourrait par exemple avoir une page de contact, une page présentant l'équipe, une page avec les conditions générales, etc.). Ce controller gère des **pages** et nous souhaitons avoir une page **home**, donc nous pouvons lancer la commande :
+Pour cela nous avons besoin d'un controller qui va gérer les pages non reliées à notre logique métier (on pourrait par exemple avoir une page de contact, une page présentant l'équipe, une page avec les conditions générales, etc.). Ce controller gère des **pages** et nous souhaitons avoir une page **home**, donc nous pouvons lancer la commande&nbsp;:
 
 💻
 
@@ -125,7 +125,7 @@ Bienvenue sur Touiteur !
 
 Nous pouvons voir le fruit de notre travail à l'adresse `http://localhost:3000/pages/home` :tada:
 
-Nous souhaitons que cette page s'affiche à la racine de l'application donc nous devons modifier le fichier **config/routes.rb** :
+Nous souhaitons que cette page s'affiche à la racine de l'application donc nous devons modifier le fichier **config/routes.rb**&nbsp;:
 
 📄
 
@@ -144,7 +144,7 @@ Nous avons maintenant notre page **home** à la bonne adresse  [http://localhost
 
 Notre objectif est de LISTER et CRÉER des messages. Nous avons donc besoin d'un modèle **message**. Un message a  deux propriétés : un contenu `content` et un auteur `author`.
 
-Nous pouvons le créer grâce à la commande :
+Nous pouvons le créer grâce à la commande&nbsp;:
 
 💻
 
@@ -152,7 +152,7 @@ Nous pouvons le créer grâce à la commande :
 rails generate model message content:text author:string
 ```
 
-Nous avons deux nouveaux fichiers : **app/models/message.rb** et **db/migrate/20180912121554_create_messages.rb** ce dernier va permettre d'ajouter à la base de données une table `messages` grâce à la commande :
+Nous avons deux nouveaux fichiers : **app/models/message.rb** et **db/migrate/20180912121554_create_messages.rb** ce dernier va permettre d'ajouter à la base de données une table `messages` grâce à la commande&nbsp;:
 
 💻
 
@@ -164,7 +164,7 @@ rails db:migrate
 
 Nous voulons lister des messages, pour cela nous allons devoir tricher un peu et créer des messages directement depuis la console Rails car nous n'avons pas encore développé la fonctionnalité !
 
-Pour ouvir une console Rails, il faut lancer la commande suivante :
+Pour ouvir une console Rails, il faut lancer la commande suivante&nbsp;:
 
 💻
 
@@ -176,7 +176,7 @@ L'invite de commande commence maitenant par `irb(main):001:0> `, nous sommes dan
 
 Les commandes de la console Rails sont indiquées par 💻🤓, comme pour le terminal, il faut les rentrer une par une et appuyer sur la touche `Entrer` pour les lancer.
 
-Pour créer un message depuis la console nous tapons la commande suivante :
+Pour créer un message depuis la console nous tapons la commande suivante&nbsp;:
 
 💻:nerd_face:
 
@@ -192,7 +192,7 @@ Créons-en un deuxième !
 Message.create(content: "I want to code more!", author: "Eve")
 ```
 
-Nous avons maintenant deux messages dans la base de données. Nous pouvons le vérifier avec une dernière commande dans la console Rails :
+Nous avons maintenant deux messages dans la base de données. Nous pouvons le vérifier avec une dernière commande dans la console Rails&nbsp;:
 
 💻🤓
 
@@ -200,7 +200,7 @@ Nous avons maintenant deux messages dans la base de données. Nous pouvons le v�
 Message.all
 ```
 
-Qui donne la réponse suivante :
+Qui donne la réponse suivante&nbsp;:
 
 ```ruby
 Message Load (1.2ms)  SELECT  "messages".* FROM "messages" LIMIT ?  [["LIMIT", 11]]
@@ -215,7 +215,7 @@ Affichons-les dans notre application !
 
 ### Lister des messages (INDEX)
 
-Pour lister les messages depuis notre application nous allons avoir besoin d'un controller pour les _messages_ et l'action (la page) dont nous avons besoin s'appelle INDEX. Nous allons donc utiliser la commande :
+Pour lister les messages depuis notre application nous allons avoir besoin d'un controller pour les _messages_ et l'action (la page) dont nous avons besoin s'appelle INDEX. Nous allons donc utiliser la commande&nbsp;:
 
 💻
 
@@ -225,7 +225,7 @@ rails generate controller messages index --no-assets
 
 Nous avons alors un nouveau fichier **app/controllers/messages_controller** et un nouveau dossier **app/views/messages** contenant un fichier **index.html.erb**.
 
-Nous avons pour l'instant accès à cette page depuis l'adresse `http://localhost:3000/messages/index`, modifions le fichier **config/routes.rb** pour pouvoir accéder à cette page depuis `http://localhost:3000/messages/` :
+Nous avons pour l'instant accès à cette page depuis l'adresse `http://localhost:3000/messages/index`, modifions le fichier **config/routes.rb** pour pouvoir accéder à cette page depuis `http://localhost:3000/messages/`&nbsp;:
 
 📄
 
@@ -252,7 +252,7 @@ class MessagesController < ApplicationController
 end
 ```
 
-Modifions maintenant notre vue pour afficher chaque message :
+Modifions maintenant notre vue pour afficher chaque message&nbsp;:
 
 📄
 
@@ -318,7 +318,7 @@ end
 
 Si tout c'est bien passé, nous avons notre nouvelle page http://localhost:3000/messages/new. Il nous manque plus que notre formulaire !
 
-Pour l'action INDEX, le controller avait passé à la vue une variable `@messages` qui contenait tous les messages. Pour notre action NEW, le controller va passer à la vue une variable `@message` qui contiendra un "message vide", prêt à être rempli par l'utilisateur. Pour cela, nous ajoutons une ligne de code dans le controller **messages_controller** :
+Pour l'action INDEX, le controller avait passé à la vue une variable `@messages` qui contenait tous les messages. Pour notre action NEW, le controller va passer à la vue une variable `@message` qui contiendra un "message vide", prêt à être rempli par l'utilisateur. Pour cela, nous ajoutons une ligne de code dans le controller **messages_controller**&nbsp;:
 
 📄
 
@@ -335,7 +335,7 @@ class MessagesController < ApplicationController
 end
 ```
 
-Nous pouvons maintenant créer notre formulaire dans la vue **new.html.erb** :
+Nous pouvons maintenant créer notre formulaire dans la vue **new.html.erb**&nbsp;:
 
 📄
 
@@ -373,7 +373,7 @@ end
 
 Comme nous "postons" des informations lorsque nous soumettons le formulaire, nous utilisons le verbe `post` dans le routeur.
 
-La création d'un message en base de donnée depuis les informations envoyées par l'utilisateur se fait de cette manière :
+La création d'un message en base de donnée depuis les informations envoyées par l'utilisateur se fait de cette manière&nbsp;:
 
 📄
 
