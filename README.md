@@ -291,9 +291,11 @@ C'est parti !
 Rails.application.routes.draw do
   root to: 'pages#home'
   get 'messages', to: 'messages#index'
-  get 'messages/new', to: 'messages#new'
+  get 'messages/new', to: 'messages#new', as: :new_message
 end
 ```
+
+La mention `as: :new_message` nous servira plus tard pour créer un lien en respectant les conventions de Rails.
 
 📄
 
@@ -366,7 +368,7 @@ Nous avons besoin d'une route et d'une action CREATE dans le controller **app/co
 Rails.application.routes.draw do
   root to: 'pages#home'
   get 'messages', to: 'messages#index'
-  get 'messages/new', to: 'messages#new'
+  get 'messages/new', to: 'messages#new', as: :new_message
   post 'messages', to: 'messages#create'
 end
 ```
@@ -399,8 +401,113 @@ Cette partie est un peu dure à comprendre aujourd'hui 😳
 
 En gros on permet à l'utilisateur de remplir les paramètres `content` et `author` pour un `message`, on crée le message puis on redirige l'utilisateur vers la page d'index des messages.
 
+On peut également rajouter un lien vers le formulaire depuis l'index des messages.
+
+Ici, on retrouve le `new_message` que nous avons spécifié dans les routes. Associé au helper `link_to`, nous pouvons simplement créer un lien sur notre page.
+
+```ruby
+<!-- app/views/messages/index.html.erb -->
+<h1>Les messages :</h1>
+
+<%= link_to 'Ecrire un message', new_message_path %>
+  
+<% @messages.each do |message| %>
+  <p><%= message.content %></p>
+  <em><%= message.author %></em>
+<% end %>
+```
+
 Et voilà ! Nous avons maintenant la possibilité de créer des messages :tada:
+
+### Afficher un message (SHOW)
+
+C'est reparti pour un tour, il va nous falloir une route dans le routeur, une action SHOW dans le controller et d'une vue, on commence à avoir l'habitude ... 😏
+
+📄 D'abord la route
+
+```ruby
+# config/routes.rb
+Rails.application.routes.draw do
+  root to: 'pages#home'
+  get 'messages', to: 'messages#index'
+  get 'messages/new', to: 'messages#new', as: :new_message
+  post 'messages', to: 'messages#create'
+  get 'messages/:id', to: 'messages#show', as: :message
+end
+```
+
+Pour retrouver le message à afficher, nous allons devoir renseigner son `id`, qui est automatiquement ajouté au moment de l'enregistrement du message dans la base de données. En écrivant la route de cette manière, nous indiquons à Rails que l'id sera dynamque et nous pourront par exemple aller sur l'url `localhost:3000/messages/42` pour afficher le message avec l'id `42` :nerd_face:.
+
+Encore une fois on précise à Rails comment nous souhaitons appeler notre route avec `as: :message`.
+
+📄 Ensuite le controller
+
+```ruby
+# app/controllers/messages_controller.rb
+class MessagesController < ApplicationController
+  # [...] le reste du fichier est caché ici 🙈
+  	
+  def show
+  end
+  
+  # [...] ... et là aussi ! 🙈
+end
+```
+
+📄 Et enfin, la vue
+
+```ruby
+<!-- app/views/messages/show.html.erb -->
+<h1>Un message</h1>
+```
+
+Pour afficher un message en particulier, nous avons besoin de le retrouver dans la base de données. Pour cela nous allons utiliser l'id que nous récupérons dans le controller depuis l'url grâce aux `params` que nous avons aussi croisés au moment de la création du message.
+
+📄
+
+```ruby
+# app/controllers/messages_controller.rb
+# [...]
+	def	show
+    @message = Message.find(params[:id])
+  end
+# [...]
+```
+
+Nous pouvons maintenant l'afficher dans notre vue. Et même s'offrir le luxe d'un lien de retour à l'index :sunglasses:.
+
+📄
+
+```ruby
+<!-- app/views/messages/show.html.erb -->
+<h1>Un message</h1>
+  
+<p><%= @message.content %></p>
+<em><%= @message.author %></em>
+
+<%= link_to 'Retour aux messages', messages_path %>
+```
+
+Pour finir, pourquoi ne pas rajouter sur l'index un lien vers la SHOW pour chaque message ? Pour cela il suffit encore un fois d'utiliser le helper `link_to`.
+
+📄
+
+```ruby
+<!-- app/views/messages/index.html.erb -->
+<h1>Les messages :</h1>
+
+<%= link_to 'Ecrire un message', new_message_path %>
+  
+<% @messages.each do |message| %>
+  <p><%= message.content %></p>
+  <em><%= message.author %></em>
+	<%= link_to 'détails', message_path(message) %>
+<% end %>
+```
+
+Et voilà, nous pouvons désormais lister tous les messages, en créer et afficher les détails d'un seul. Cela commence à être une  app digne de ce nom ! :wink:
 
 Vivement le cours sur l'HTML et CSS pour rendre tout ça plus joli !
 
 [Télécharger le résultat du livecode](https://github.com/nantesrb/touiteur-livecode/archive/master.zip)
+
