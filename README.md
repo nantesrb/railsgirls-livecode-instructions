@@ -37,7 +37,7 @@ Voici la ligne de commande pour demander à Rails de créer l'application&nbsp;:
 💻
 
 ```sh
-rails new -T -C --skip-yarn --skip-bootsnap touiteur-demo
+rails new touiteur-demo -T -C --skip-bootsnap --skip-webpack-install
 ```
 
 Rails va générer un dossier avec tous les fichiers nécessaires à l'application.
@@ -410,7 +410,7 @@ Ici, on retrouve le `new_message` que nous avons spécifié dans les routes. Ass
 <h1>Les messages :</h1>
 
 <%= link_to 'Ecrire un message', new_message_path %>
-  
+
 <% @messages.each do |message| %>
   <p><%= message.content %></p>
   <em><%= message.author %></em>
@@ -446,10 +446,10 @@ Encore une fois on précise à Rails comment nous souhaitons appeler notre route
 # app/controllers/messages_controller.rb
 class MessagesController < ApplicationController
   # [...] le reste du fichier est caché ici 🙈
-  	
+
   def show
   end
-  
+
   # [...] ... et là aussi ! 🙈
 end
 ```
@@ -481,7 +481,7 @@ Nous pouvons maintenant l'afficher dans notre vue. Et même s'offrir le luxe d'u
 ```ruby
 <!-- app/views/messages/show.html.erb -->
 <h1>Un message</h1>
-  
+
 <p><%= @message.content %></p>
 <em><%= @message.author %></em>
 
@@ -497,7 +497,7 @@ Pour finir, pourquoi ne pas rajouter sur l'index un lien vers la SHOW pour chaqu
 <h1>Les messages :</h1>
 
 <%= link_to 'Ecrire un message', new_message_path %>
-  
+
 <% @messages.each do |message| %>
   <p><%= message.content %></p>
   <em><%= message.author %></em>
