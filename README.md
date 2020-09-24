@@ -465,7 +465,7 @@ Pour afficher un message en particulier, nous avons besoin de le retrouver dans 
 ```ruby
 # app/controllers/messages_controller.rb
 # [...]
-	def	show
+  def show
     @message = Message.find(params[:id])
   end
 # [...]
