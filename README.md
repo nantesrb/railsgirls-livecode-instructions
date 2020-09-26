@@ -506,3 +506,6 @@ Et voilà, nous pouvons désormais lister tous les messages, en créer et affich
 
 Vivement le cours sur l'HTML et CSS pour rendre tout ça plus joli !
 
+## Pour aller plus loin...
+
+[Intégrer Bootstrap pour améliorer le rendu des vues](README.md).
