@@ -32,12 +32,12 @@ ou
 
 Nous allons créer un clone de Twitter (en beaucoup plus simple !). Notre logique métier s'articulera donc autour de _messages_. Nous allons pouvoir LISTER et CRÉER des _messages._
 
-Voici la ligne de commande pour demander à Rails de créer l'application&nbsp;:
+Voici la ligne de commande pour demander à Rails de créer l'application la plus simple possible&nbsp;:
 
 💻
 
 ```sh
-rails new touiteur-demo -T -C --skip-bootsnap --skip-javascript
+rails new touiteur-demo --css tailwind --skip-test --skip-action-mailbox --skip-active-storage --skip-javascript --skip-sprockets --skip-action-mailer --skip-active-job --skip-action-cable
 ```
 
 Rails va générer un dossier avec tous les fichiers nécessaires à l'application.
@@ -57,14 +57,14 @@ Pour cela, il nous faut démarrer le serveur Rails avec la commande&nbsp;:
 💻
 
 ```sh
-rails server
+dev
 ```
 
 Depuis notre navigateur, nous pouvons accéder à notre application à l'adresse [http://localhost:3000](http://localhost:3000).
 
 ![yay](images/yay.png)
 
-Nous pouvons alors accéder à notre projet depuis notre éditeur de code **Sublime Text**. Nous retrouvons l'ensemble des dossiers et des fichiers de l'application&nbsp;:
+Nous pouvons alors accéder à notre projet depuis notre éditeur de code **Visual Studio Code**. Nous retrouvons l'ensemble des dossiers et des fichiers de l'application&nbsp;:
 
 ![arborescence](images/tree.png)
 
@@ -90,7 +90,7 @@ Nous allons aussi utiliser le fichier `config/routes.rb`.
 
 Nous allons créer une page d'accueil `home`, qui n'est pas liée à notre logique métier (aucun lien avec les _messages_ pour cette première page).
 
-Cette page sera accessible à la racine `/` de notre site à la place de la page _Yay! You’re on Rails!_, c'est-à-dire à l'adresse `http://localhost:3000/`.
+Cette page sera accessible à la racine `/` de notre site à la place de la page avec le Logo de Rails, c'est-à-dire à l'adresse `http://localhost:3000/`.
 
 Pour cela nous avons besoin d'un contrôleur qui va gérer les pages non reliées à notre logique métier (on pourrait par exemple avoir une page de contact, une page présentant l'équipe, une page avec les conditions générales, etc.). Ce contrôleur gère des `pages` et nous souhaitons avoir une page `home`.
 
@@ -99,10 +99,10 @@ Dans une nouvelle fenêtre de Terminal, nous pouvons lancer la commande&nbsp;:
 💻
 
 ```sh
-rails generate controller pages home --no-assets
+rails generate controller pages home --no-helper
 ```
 
-Nous avons alors un nouveau fichier `app/controllers/pages_controller` et un nouveau dossier `app/views/pages` contenant un fichier `home.html.erb`.
+Nous avons alors un nouveau fichier `app/controllers/pages_controller.rb` et un nouveau dossier `app/views/pages` contenant un fichier `home.html.erb`.
 
 Ouvrons `app/views/pages/home.html.erb` et personnalisons-le un peu&nbsp;!
 
@@ -110,10 +110,10 @@ Ouvrons `app/views/pages/home.html.erb` et personnalisons-le un peu&nbsp;!
 
 ```erb
 <!-- app/views/pages/home.html.erb -->
-Bienvenue sur Touiteur !
+<h1 class="font-bold text-4xl text-blue-500">Bienvenue sur Touiteur !</h1>
 ```
 
-Nous pouvons voir le fruit de notre travail à l'adresse `http://localhost:3000/pages/home` :tada:
+Nous pouvons voir le fruit de notre travail à l'adresse [http://localhost:3000/pages/home](http://localhost:3000/pages/home) :tada:
 
 Nous souhaitons que cette page s'affiche à la racine de l'application donc nous devons modifier le fichier `config/routes.rb`&nbsp;:
 
@@ -194,14 +194,25 @@ Qui donne la réponse suivante&nbsp;:
 
 ```ruby
 Message Load (1.2ms)  SELECT  "messages".* FROM "messages" LIMIT ?  [["LIMIT", 11]]
-=> #<ActiveRecord::Relation [#<Message id: 1, content: "Hello RailsGirls!", author: "Alice", created_at: "2020-09-26 12:29:36", updated_at: "2018-09-12 12:29:36">, #<Message id: 2, content: "I want to code more !", author: "Eve", created_at: "2020-09-26 12:29:41", updated_at: "2018-09-12 12:29:41">]>
+=> [#<Message:0x00000001095850e8
+  id: 1,
+  content: "Hello RailsGirls!",
+  author: "Alice",
+  created_at: Mon, 22 Jul 2024 16:01:59.078988000 UTC +00:00,
+  updated_at: Mon, 22 Jul 2024 16:01:59.078988000 UTC +00:00>,
+ #<Message:0x0000000109584cb0
+  id: 2,
+  content: "I want to code more!",
+  author: "Eve",
+  created_at: Mon, 22 Jul 2024 16:02:04.512204000 UTC +00:00,
+  updated_at: Mon, 22 Jul 2024 16:02:04.512204000 UTC +00:00>]
 ```
 
 En lisant bien, on retrouve bien nos deux messages 🔍
 
 Affichons-les dans notre application !
 
-(Pour sortir de la console Rails, il faut entrer la commande&nbsp;:
+Pour sortir de la console Rails, il faut entrer la commande&nbsp;:
 
 :gem:
 
@@ -216,12 +227,12 @@ Pour lister les messages depuis notre application nous allons avoir besoin d'un 
 💻
 
 ```sh
-rails generate controller messages index --no-assets
+rails generate controller messages index --no-helper
 ```
 
-Nous avons alors un nouveau fichier `app/controllers/messages_controller` et un nouveau dossier `app/views/messages` contenant un fichier `index.html.erb`.
+Nous avons alors un nouveau fichier `app/controllers/messages_controller.rb` et un nouveau dossier `app/views/messages` contenant un fichier `index.html.erb`.
 
-Nous avons pour l'instant accès à cette page depuis l'adresse [http://localhost:3000/messages/index](http://localhost:3000/messages/index), modifions le fichier `config/routes.rb` pour pouvoir accéder à cette page depuis `http://localhost:3000/messages`&nbsp;:
+Nous avons pour l'instant accès à cette page depuis l'adresse [http://localhost:3000/messages/index](http://localhost:3000/messages/index), modifions le fichier `config/routes.rb` pour pouvoir accéder à cette page depuis [http://localhost:3000/messages](http://localhost:3000/messages)&nbsp;:
 
 📄
 
@@ -255,12 +266,14 @@ Modifions maintenant notre vue `app/views/messages/index.html.erb` pour afficher
 
 ```ruby
 <!-- app/views/messages/index.html.erb -->
-<h1>Les messages :</h1>
+<div>
+  <h1 class="font-bold text-4xl text-blue-500">Les messages :</h1>
 
-<% @messages.each do |message| %>
-  <p><%= message.content %></p>
-  <em><%= message.author %></em>
-<% end %>
+  <% @messages.each do |message| %>
+    <p class="mt-2"><%= message.content %></p>
+    <em><%= message.author %></em>
+  <% end %>
+</div>
 ```
 
 Et oui, on peut mettre du code HTML ET du code Ruby dans la vue ! On verra plus précisement le HTML plus tard.
@@ -307,12 +320,13 @@ class MessagesController < ApplicationController
   end
 end
 ```
+Dans le dossier `app/views/messages` ajoutons un nouveau fichier comme ci dessous.
 
 📄
 
 ```ruby
 <!-- app/views/messages/new.html.erb -->
-<h1>Nouveau message</h1>
+<h1  class="font-bold text-4xl text-blue-500">Nouveau message</h1>
 ```
 
 Si tout c'est bien passé, nous avons notre nouvelle page [http://localhost:3000/messages/new](http://localhost:3000/messages/new). Il ne nous manque plus que notre formulaire&nbsp;!
@@ -340,16 +354,18 @@ Nous pouvons maintenant créer notre formulaire dans la vue `new.html.erb`&nbsp;
 
 ```ruby
 <!-- app/views/messages/new.html.erb -->
-<h1>Nouveau message</h1>
-<%= form_for @message do |f| %>
-  <%= f.label :content, 'Contenu' %>
-  <%= f.text_area :content %>
+<div>
+  <h1 class="font-bold text-4xl text-blue-500">Nouveau message</h1>
+  <%= form_for(@message, html: { class: "flex flex-col" }) do |f| %>
+    <%= f.label :content, 'Contenu' %>
+    <%= f.text_area :content %>
 
-  <%= f.label :author, 'Auteur' %>
-  <%= f.text_field :author %>
+    <%= f.label :author, 'Auteur' %>
+    <%= f.text_field :author %>
 
-  <%= f.submit 'Ajouter mon message' %>
-<% end %>
+    <%= f.submit 'Ajouter mon message' %>
+  <% end %>
+</div>
 ```
 
 Nous pouvons maintenant admirer notre ~~superbe~~ formulaire [http://localhost:3000/messages/new](http://localhost:3000/messages/new).
@@ -365,7 +381,7 @@ Nous avons besoin d'une route et d'une action CREATE dans le contrôleur `messag
 Rails.application.routes.draw do
   get 'messages', to: 'messages#index'
   get 'messages/new', to: 'messages#new', as: :new_message
-  post 'messages', to: 'messages#create'
+  post 'messages', to: 'messages#create' # <-- Ajouter cette ligne
   root to: 'pages#home'
 end
 ```
@@ -404,21 +420,23 @@ Ici, on retrouve le `new_message` que nous avons spécifié dans les routes. Ass
 
 ```ruby
 <!-- app/views/messages/index.html.erb -->
-<h1>Les messages :</h1>
+<div>
+  <h1 class="font-bold text-4xl text-blue-500">Les messages :</h1>
 
-<%= link_to 'Ecrire un message', new_message_path %>
+  <%= link_to 'Ecrire un message', new_message_path %>
 
-<% @messages.each do |message| %>
-  <p><%= message.content %></p>
-  <em><%= message.author %></em>
-<% end %>
+  <% @messages.each do |message| %>
+    <p><%= message.content %></p>
+    <em><%= message.author %></em>
+  <% end %>
+</div>
 ```
 
 Et voilà ! Nous avons maintenant la possibilité de créer des messages :tada:
 
 ### Afficher un message (SHOW)
 
-C'est reparti pour un tour, il va nous falloir une route dans le routeur, une action SHOW dans le controller et d'une vue. On commence à avoir l'habitude... 😏
+C'est reparti pour un tour, il va nous falloir une route dans le routeur, une action SHOW dans le controller et une vue. On commence à avoir l'habitude... 😏
 
 📄 D'abord la route
 
@@ -428,7 +446,7 @@ Rails.application.routes.draw do
   get 'messages', to: 'messages#index'
   get 'messages/new', to: 'messages#new', as: :new_message
   post 'messages', to: 'messages#create'
-  get 'messages/:id', to: 'messages#show', as: :message
+  get 'messages/:id', to: 'messages#show', as: :message # <-- Ajouter cette ligne
   root to: 'pages#home'
 end
 ```
@@ -455,7 +473,7 @@ end
 
 ```ruby
 <!-- app/views/messages/show.html.erb -->
-<h1>Un message</h1>
+<h1  class="font-bold text-4xl text-blue-500">Un message</h1>
 ```
 
 Pour afficher un message en particulier, nous avons besoin de le retrouver dans la base de données. Pour cela nous allons utiliser l'id que nous récupérons dans le controller depuis l'url grâce aux `params` que nous avons aussi croisés au moment de la création du message.
@@ -477,12 +495,14 @@ Nous pouvons maintenant l'afficher dans notre vue. Et même s'offrir le luxe d'u
 
 ```ruby
 <!-- app/views/messages/show.html.erb -->
-<h1>Un message</h1>
+<div>
+  <h1 class="font-bold text-4xl text-blue-500">Un message</h1>
+  <%= link_to 'Retour aux messages', messages_path %>
 
-<p><%= @message.content %></p>
-<em><%= @message.author %></em>
+  <p class="mt-2"><%= @message.content %></p>
+  <em><%= @message.author %></em>
 
-<%= link_to 'Retour aux messages', messages_path %>
+</div>
 ```
 
 Pour finir, pourquoi ne pas rajouter sur l'index un lien vers la SHOW pour chaque message ? Pour cela, il faut utiliser le _helper_ `link_to`.
@@ -498,7 +518,7 @@ Pour finir, pourquoi ne pas rajouter sur l'index un lien vers la SHOW pour chaqu
 <% @messages.each do |message| %>
   <p><%= message.content %></p>
   <em><%= message.author %></em>
-	<%= link_to 'détails', message_path(message) %>
+	<%= link_to '--> détails', message_path(message) %>
 <% end %>
 ```
 
@@ -508,4 +528,4 @@ Vivement le cours sur l'HTML et CSS pour rendre tout ça plus joli !
 
 ## Pour aller plus loin...
 
-[Intégrer Bootstrap pour améliorer le rendu des vues](BOOTSTRAP.md).
+[Utiliser TailwindCSS pour améliorer le rendu des vues](TAILWINDCSS.md).
