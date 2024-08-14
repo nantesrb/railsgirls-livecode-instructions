@@ -52,7 +52,8 @@ Pour réaliser cela, il vous faudra suivre ces étapes :
 
 Rappel : pour afficher le résultat d'une méthode Ruby, il faut l'entourer des balises `<%=` et `%>`.
 
-Et voilà le résultat!
+Et voilà le résultat! \
+
 <img width="586" alt="Screenshot 2024-08-14 at 15 29 28" src="https://github.com/user-attachments/assets/cdbba204-12d7-4290-8f11-d22ee7439334">
 
 ## 4. Continuer sur cette voie !
