@@ -329,7 +329,7 @@ Dans le dossier `app/views/messages` ajoutons un nouveau fichier comme ci dessou
 <h1  class="font-bold text-4xl text-blue-500">Nouveau message</h1>
 ```
 
-Si tout c'est bien passé, nous avons notre nouvelle page [http://localhost:3000/messages/new](http://localhost:3000/messages/new). Il ne nous manque plus que notre formulaire&nbsp;!
+Si tout s'est bien passé, nous avons notre nouvelle page [http://localhost:3000/messages/new](http://localhost:3000/messages/new). Il ne nous manque plus que notre formulaire&nbsp;!
 
 Pour l'action INDEX, le contrôleur avait passé à la vue une variable `@messages` qui contenait tous les messages. Pour notre action NEW, le contrôleur va passer à la vue une variable `@message` qui contiendra un «&nbsp;message vide&nbsp;», prêt à être rempli par l'utilisateur. Pour cela, nous ajoutons une ligne de code dans le contrôleur `messages_controller.rb`&nbsp;:
 
@@ -451,7 +451,7 @@ Rails.application.routes.draw do
 end
 ```
 
-Pour retrouver le message à afficher, nous allons devoir renseigner son `id`, qui est automatiquement ajouté au moment de l'enregistrement du message dans la base de données. En écrivant la route de cette manière, nous indiquons à Rails que l'id sera dynamique et nous pourront par exemple aller sur l'url [http://localhost:3000/messages/42](http://localhost:3000/messages/42) pour afficher le message avec l'id `42` :nerd_face:.
+Pour retrouver le message à afficher, nous allons devoir renseigner son `id`, qui est automatiquement ajouté au moment de l'enregistrement du message dans la base de données. En écrivant la route de cette manière, nous indiquons à Rails que l'id sera dynamique et nous pourrons par exemple aller sur l'url [http://localhost:3000/messages/42](http://localhost:3000/messages/42) pour afficher le message avec l'id `42` :nerd_face:.
 
 Encore une fois, on précise à Rails comment nous souhaitons appeler notre route avec `as: :message`.
 
