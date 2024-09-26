@@ -2,11 +2,11 @@
 
 Pour améliorer le rendu visuel de notre application Touiteur, nous utilisons le framework CSS [Tailwind](https://tailwindcss.com/).
 
-Il est déjà intégré à votre application depuis que vous l'avez crée grâce à la commande `rails new touiteur-demo --css tailwind`
+Il est déjà intégré à votre application depuis que vous l'avez créée grâce à la commande `rails new touiteur-demo --css tailwind`
 
 ## 1. Modifier la structure HTML des vues
 
-Vous pourvez utiliser des classes CSS fournies par Tailwind dans vos vues HTML. Voici un exemple de structure (aussi appelé _markup_) pour afficher une liste de messages.
+Vous pouvez utiliser des classes CSS fournies par Tailwind dans vos vues HTML. Voici un exemple de structure (aussi appelé _markup_) pour afficher une liste de messages.
 
 ```erb
 <div class="container mx-auto py-4">
@@ -40,7 +40,7 @@ Vous pourvez utiliser des classes CSS fournies par Tailwind dans vos vues HTML. 
 
 Libre à vous cependant de trouver d'autres structures qui vous conviennent. Pour cela, vous pouvez parcourir le Web [(exp ici d'une librairie de design)](https://flowbite.com/docs/components/card/).
 
-## 3. Dynamiser les vues
+## 2. Dynamiser les vues
 
 Il ne nous reste plus qu'à afficher les données réelles (issues de la base de données) de chaque message. En effet, dans l'exemple donné ci-dessus, nous n'affichons pour l'instant aucune information issue de la base de données.
 
@@ -56,6 +56,6 @@ Et voilà le résultat!
 
 <img width="586" alt="Screenshot 2024-08-14 at 15 29 28" src="https://github.com/user-attachments/assets/cdbba204-12d7-4290-8f11-d22ee7439334">
 
-## 4. Continuer sur cette voie !
+## 3. Continuer sur cette voie !
 
-Maintenant que vous maîtriser parfaitement Ruby on Rails et Tailwind, pourquoi pas mettre également à jour les vues de liste des messages, du formulaire de création, etc. ?
+Maintenant que vous maîtrisez parfaitement Ruby on Rails et Tailwind, pourquoi pas mettre également à jour les vues de liste des messages, du formulaire de création, etc. ?
