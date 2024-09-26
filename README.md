@@ -210,6 +210,14 @@ Message Load (1.2ms)  SELECT  "messages".* FROM "messages" LIMIT ?  [["LIMIT", 1
 
 En lisant bien, on retrouve bien nos deux messages 🔍
 
+Nous pouvons maintenant fermer la console Rails avec la commande suivante :
+
+💻🤓
+
+```ruby
+exit
+```
+
 Affichons-les dans notre application !
 
 Pour sortir de la console Rails, il faut entrer la commande&nbsp;:
