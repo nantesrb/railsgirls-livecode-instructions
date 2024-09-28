@@ -465,6 +465,8 @@ class MessagesController < ApplicationController
   def show
   end
 
+  private
+
   # [...] ... et là aussi ! 🙈
 end
 ```
